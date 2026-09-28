@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>Body Target Calculator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="page">
+    <header class="page-header">
+      <h1>Body Target Calculator</h1>
+      <p class="muted">Daily calories, macros, water and steps, based on your body and your goal.</p>
+    </header>
+
+    <form id="calc-form" class="card" novalidate>
+      <h2>Your information</h2>
+
+      <div class="fields">
+        <div class="field">
+          <label for="weight">Weight (kg)</label>
+          <input id="weight" name="weight" type="number" inputmode="decimal"
+                 required min="30" max="300" step="0.1" aria-describedby="weight-error">
+          <p class="error" id="weight-error" role="alert"></p>
+        </div>
+
+        <div class="field">
+          <label for="age">Age</label>
+          <input id="age" name="age" type="number" inputmode="numeric"
+                 required min="14" max="90" step="1" aria-describedby="age-error">
+          <p class="error" id="age-error" role="alert"></p>
+        </div>
+
+        <div class="field">
+          <label for="sex">Sex</label>
+          <select id="sex" name="sex" required aria-describedby="sex-error">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+          <p class="error" id="sex-error" role="alert"></p>
+        </div>
+
+        <div class="field">
+          <label for="height">Height (cm)</label>
+          <input id="height" name="height" type="number" inputmode="numeric"
+                 required min="120" max="230" step="1" aria-describedby="height-error">
+          <p class="error" id="height-error" role="alert"></p>
+        </div>
+
+        <div class="field">
+          <label for="steps">Average daily steps</label>
+          <input id="steps" name="steps" type="number" inputmode="numeric"
+                 required min="0" max="40000" step="1" aria-describedby="steps-help steps-error">
+          <p class="help" id="steps-help">Use your normal average, not your maximum.</p>
+          <p class="error" id="steps-error" role="alert"></p>
+        </div>
+
+        <div class="field">
+          <label for="goal">Goal</label>
+          <select id="goal" name="goal" required aria-describedby="goal-error">
+            <option value="loss">Fat loss + muscle preservation</option>
+            <option value="maintain">Maintain</option>
+            <option value="gain">Lean muscle gain</option>
+          </select>
+          <p class="error" id="goal-error" role="alert"></p>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Calculate my targets</button>
+    </form>
+
+    <section id="results" class="results" aria-labelledby="results-title" aria-live="polite" hidden>
+      <h2 id="results-title">Your daily targets</h2>
+
+      <div class="grid">
+        <article class="card stat">
+          <h3>Calories</h3>
+          <p class="value"><span id="out-calories">0</span> <small>kcal</small></p>
+        </article>
+        <article class="card stat">
+          <h3>Protein</h3>
+          <p class="value"><span id="out-protein">0</span> <small>g</small></p>
+        </article>
+        <article class="card stat">
+          <h3>Carbs</h3>
+          <p class="value"><span id="out-carbs">0</span> <small>g</small></p>
+        </article>
+        <article class="card stat">
+          <h3>Fat</h3>
+          <p class="value"><span id="out-fat">0</span> <small>g</small></p>
+        </article>
+        <article class="card stat">
+          <h3>Water</h3>
+          <p class="value"><span id="out-water">0</span> <small>L</small></p>
+        </article>
+        <article class="card stat">
+          <h3>Step target</h3>
+          <p class="value"><span id="out-steps">0</span> <small>steps</small></p>
+        </article>
+      </div>
+
+      <p class="summary card" id="out-summary"></p>
+
+      <button type="button" id="recalc" class="btn btn-secondary">Recalculate</button>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
